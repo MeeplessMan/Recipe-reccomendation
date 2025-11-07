@@ -1,250 +1,838 @@
-# 🔍 Live Ingredient Scanner
+# Recipe Recommenda 🍳# 🍽️ Ingredient Scanner App - Complete Full-Stack Web Application
 
-A real-time AI-powered ingredient detection system using YOLO (You Only Look Once) and Flask. This application uses your camera to continuously scan for ingredients and display results in a professional web interface.
+## OverviewA professional full-stack web application that uses AI to detect ingredients from fridge photos and suggests personalized recipes. Built with Flask (Python) backend, React frontend, Supabase database, and YOLO AI model for real-time ingredient detection.
+
+**Recipe Recommenda** is an intelligent, AI-powered recipe recommendation system that transforms how you discover and cook meals. Simply scan ingredients with your camera or upload photos, and get personalized recipe suggestions tailored to your dietary preferences, skill level, and allergies.
 
 ## ✨ Features
 
-- **Real-time Camera Feed**: Live video streaming with 30 FPS
-- **AI-Powered Detection**: YOLO classification model trained on 36 ingredient classes
-- **Automatic Scanning**: Periodic ingredient detection every 3 seconds
-- **Professional Web UI**: Modern, responsive interface with live results
-- **Adjustable Settings**: Configurable confidence threshold and scan intervals
-- **Background Processing**: Non-blocking ingredient detection using threading
-- **Cross-Platform**: Works on Windows, macOS, and Linux
+## 🌟 Key Features
 
-## 🥗 Supported Ingredients (36 Classes)
+### 🔍 Core Functionality
 
-The model can detect these ingredients:
+### Core Functionality
 
-**Fruits**: Apple, Banana, Grapes, Kiwi, Lemon, Mango, Orange, Pear, Pineapple, Pomegranate, Watermelon
+- 📸 **Smart Ingredient Scanning**: Advanced YOLO v5 AI detects ingredients from photos- **AI-Powered Detection**: YOLO classification model trained on 36+ ingredient classes
 
-**Vegetables**: Beetroot, Bell Pepper, Cabbage, Capsicum, Carrot, Cauliflower, Chilli Pepper, Corn, Cucumber, Eggplant, Garlic, Ginger, Lettuce, Onion, Paprika, Peas, Potato, Radish, Spinach, Sweet Corn, Sweet Potato, Tomato, Turnip
+- 🤖 **AI Recipe Recommendations**: Intelligent suggestions based on available ingredients- **Recipe Recommendations**: Personalized recipe suggestions based on detected ingredients
 
-**Legumes**: Soy Beans
+- 👤 **Personalized Profiles**: Custom dietary preferences and cooking skill levels- **User Profiles**: Account management with dietary restrictions and cooking skill levels
 
-**Peppers**: Jalapeño
+- 🚫 **Allergy Management**: Safe recipe filtering based on allergies and restrictions- **Mobile-Responsive**: Works seamlessly on desktop, tablet, and mobile devices
+
+- ❤️ **Favorites System**: Save and organize your favorite recipes- **Real-time Processing**: Fast ingredient detection with confidence scoring
+
+- 📱 **Responsive Design**: Seamless experience on desktop and mobile- **Secure Authentication**: JWT-based login system with Supabase integration
+
+### Advanced Features### 🎯 Advanced Features
+
+- 🎥 **Real-time Camera Scanning**: Live ingredient detection through your camera
+
+- 🍎 **Nutritional Information**: Detailed macro and micronutrient data- **Dietary Filtering**: Recipes filtered by vegetarian, vegan, gluten-free preferences
+
+- ⏱️ **Smart Filtering**: Filter by cooking time, difficulty, and dietary needs- **Skill-Based Recipes**: Suggestions matched to user's cooking experience level
+
+- 🔐 **Secure Authentication**: Robust user accounts with password reset- **Favorite Recipes**: Save and manage favorite recipe collections
+
+- 🔄 **Recipe Browsing**: Explore recipes with advanced search capabilities- **Scan History**: Track previous ingredient scans and results
+
+- **Professional API**: RESTful endpoints for all application features
 
 ## 🚀 Quick Start
 
-### Prerequisites
+## 🏗️ Architecture Overview
 
-- **Python 3.8+** installed on your system
-- **Camera/Webcam** connected to your computer
-- **Internet connection** for initial package installation
+### Option 1: Automated Setup (Recommended)
 
-### Installation
+1. **Run the setup script**:```
 
-1. **Extract/Download** the application folder to your preferred location
+   - Windows: Double-click `setup_recipe_recommenda.bat`ingredient_scanner_app/
 
-2. **Open Command Prompt/Terminal** and navigate to the application directory:
+   - macOS/Linux: Run `bash setup_recipe_recommenda.sh`├── backend/ # Flask API server with AI integration
 
-   ```bash
-   cd path/to/ingredient_scanner_app
-   ```
+├── frontend/ # React web application
 
-3. **Install Dependencies** (choose one method):
+2. **Configure your database**:├── model/ # YOLO AI model files
 
-   **Method A - Using pip directly:**
+   - Create a Supabase account at https://supabase.com├── database/ # Supabase schema and sample data
 
-   ```bash
-   pip install ultralytics opencv-python numpy torch torchvision Pillow Flask
-   ```
+   - Create a new project├── uploads/ # Image uploads (auto-created)
 
-   **Method B - Using requirements.txt:**
+   - Import `SUPABASE_SCHEMA_COMPLETE.sql`└── results/ # Scan results (auto-created)
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+   - Update `backend/.env` with your credentials```
 
-4. **Verify Installation** - Check if the model file exists:
-   - Ensure `model/best.pt` is present in the application folder
-   - This is your trained YOLO classification model
+3. **Start the application**:**Tech Stack:**
 
-### Running the Application
+   - Windows: Double-click `start_recipe_recommenda.bat`
 
-1. **Start the Server**:
+   - macOS/Linux: Run `bash start_recipe_recommenda.sh`- **Backend**: Flask + Python 3.8+ with Supabase integration
 
-   ```bash
-   python app.py
-   ```
+- **Frontend**: React 18+ with styled-components and responsive design
 
-2. **Open Your Browser** and navigate to:
+### Option 2: Manual Setup- **Database**: Supabase (PostgreSQL) with Row Level Security
 
-   ```
-   http://localhost:5000
-   ```
+See `SETUP_INSTRUCTIONS.md` for detailed manual installation steps.- **AI Model**: YOLO classification for 36+ ingredient classes
 
-3. **Begin Scanning**:
-   - Click the "🚀 Start Scanning" button
-   - Point your camera at ingredients
-   - Watch real-time detection results appear on the right panel
+- **Authentication**: JWT tokens with Supabase Auth
 
-## 🎮 How to Use
+## 💻 Technology Stack
 
-### Main Interface
+## 🥗 Supported Ingredients (36 Classes)
 
-1. **Camera Feed**: Live video stream from your camera (left side)
-2. **Detection Results**: Real-time ingredient list with confidence scores (right side)
-3. **Controls**: Start/Stop scanning buttons
-4. **Settings**: Adjustable detection parameters
+### Backend
 
-### Scanning Process
+- **Flask**: Lightweight Python web frameworkThe AI model can detect these ingredients:
 
-1. **Position Ingredients**: Place ingredients clearly in camera view
-2. **Start Scanner**: Click "Start Scanning" button
-3. **Wait for Detection**: System scans every 3 seconds automatically
-4. **View Results**: Detected ingredients appear with confidence percentages
-5. **Adjust Settings**: Fine-tune confidence threshold (10-90%) and scan interval (1-10 seconds)
+- **Supabase**: Modern PostgreSQL database with real-time features
 
-### Optimal Usage Tips
+- **YOLO v5**: State-of-the-art computer vision for ingredient detection**Fruits**: Apple, Banana, Grapes, Kiwi, Lemon, Mango, Orange, Pear, Pineapple, Pomegranate, Watermelon
 
-- **Good Lighting**: Ensure adequate lighting for better detection
-- **Clear View**: Keep ingredients unobstructed and well-centered
-- **Single Items**: Works best with individual ingredients vs. mixed dishes
-- **Camera Distance**: Position camera 1-3 feet from ingredients
-- **Stable Position**: Minimize camera movement during scanning
+- **JWT Authentication**: Secure token-based user authentication
 
-## ⚙️ Configuration
+**Vegetables**: Beetroot, Bell Pepper, Cabbage, Capsicum, Carrot, Cauliflower, Chilli Pepper, Corn, Cucumber, Eggplant, Garlic, Ginger, Lettuce, Onion, Paprika, Peas, Potato, Radish, Spinach, Sweet Corn, Sweet Potato, Tomato, Turnip
 
-### Detection Settings
+### Frontend
 
-**Confidence Threshold** (Default: 30%)
+- **React 18**: Modern JavaScript library with hooks and context**Legumes**: Soy Beans
 
-- Lower values: More detections, potentially more false positives
-- Higher values: Fewer detections, higher accuracy
-- Range: 10-90%
+- **Styled Components**: Dynamic CSS-in-JS styling solution
 
-**Scan Interval** (Default: 3.0 seconds)
+- **Framer Motion**: Smooth animations and transitions**Peppers**: Jalapeño
 
-- Shorter intervals: More frequent scanning, higher CPU usage
-- Longer intervals: Less frequent scanning, lower resource usage
-- Range: 1.0-10.0 seconds
+- **React Router v6**: Declarative routing for single-page applications
 
-### Advanced Configuration
+## � Prerequisites
 
-Edit `app.py` to modify:
+### AI/Machine Learning
 
-- Camera resolution (default: 640x480)
-- Frame rate (default: 30 FPS)
-- Supported ingredient classes
-- UI appearance and behavior
+- **PyTorch**: Deep learning framework for model inferenceBefore starting, ensure you have the following installed:
+
+- **OpenCV**: Computer vision preprocessing and image manipulation
+
+- **Ultralytics YOLO**: Real-time object detection implementation- **Python 3.8+** with pip
+
+- **Node.js 16+** with npm
+
+## 📁 Project Architecture- **Git** (for cloning repository)
+
+- **Supabase Account** (free tier works fine)
+
+```
+
+recipe_recommenda/## 🗄️ Database Setup (Supabase)
+
+├── 🖥️ backend/                    # Flask API Server
+
+│   ├── api/                       # RESTful API endpoints### Step 1: Create Supabase Project
+
+│   ├── services/                  # Business logic layer
+
+│   ├── utils/                     # Helper utilities1. Go to [supabase.com](https://supabase.com) and sign up/login
+
+│   ├── app.py                     # Main Flask application2. Create a new project and note your:
+
+│   └── requirements.txt           # Python dependencies   - Project URL: `https://your-project-id.supabase.co`
+
+│   - Public Anon Key: `eyJhb...` (from Settings → API)
+
+├── 🌐 frontend/                   # React Web Application   - Service Role Key: `eyJhb...` (optional, for advanced features)
+
+│   ├── src/
+
+│   │   ├── components/            # Reusable UI components### Step 2: Run Database Scripts
+
+│   │   ├── pages/                 # Page-level components
+
+│   │   ├── context/               # State management1. **Create Schema**: Go to Supabase SQL Editor
+
+│   │   ├── services/              # API client services
+
+│   │   └── styles/                # Global styling   - Copy contents of `database/supabase_schema.sql`
+
+│   ├── public/                    # Static assets   - Paste and run to create all tables and policies
+
+│   └── package.json               # Node.js dependencies
+
+│2. **Add Sample Data**:
+
+├── 🧠 model/                      # AI Model Files   - Copy contents of `database/sample_recipes.sql`
+
+│   └── best.pt                    # Trained YOLO model   - Paste and run to populate with 15 sample recipes
+
+│
+
+├── 📁 uploads/                    # Image upload directory## 🔧 Backend Setup
+
+├── 📊 results/                    # Processing results
+
+└── 📋 *.sql                       # Database schema files### Step 1: Environment Setup
+
+```
+
+````bash
+
+## 🛠️ Development# Navigate to backend directory
+
+cd backend
+
+### System Requirements
+
+- **Python**: 3.8 or higher# Create and activate virtual environment
+
+- **Node.js**: 14.x or higherpython -m venv venv
+
+- **RAM**: 4GB minimum (8GB recommended for AI processing)
+
+- **Storage**: 2GB free space# On Windows:
+
+- **OS**: Windows 10+, macOS 10.15+, or Linux Ubuntu 18.04+venv\Scripts\activate
+
+
+
+### Environment Setup# On macOS/Linux:
+
+1. Backend configuration in `backend/.env`:source venv/bin/activate
+
+   ```env
+
+   SUPABASE_URL=your_supabase_project_url# Install dependencies
+
+   SUPABASE_KEY=your_supabase_anon_keypip install -r requirements.txt
+
+   JWT_SECRET_KEY=your_secure_jwt_secret```
+
+   FLASK_ENV=development
+
+   ```### Step 2: Environment Configuration
+
+
+
+2. Frontend configuration in `frontend/.env`:Create `.env` file in `backend/` directory:
+
+   ```env
+
+   REACT_APP_API_URL=http://localhost:5000```env
+
+   REACT_APP_ENVIRONMENT=development# Supabase Configuration
+
+   ```SUPABASE_URL=https://your-project-id.supabase.co
+
+SUPABASE_KEY=your-anon-public-key-here
+
+### Running in DevelopmentSUPABASE_SERVICE_KEY=your-service-role-key-here
+
+```bash
+
+# Start backend server (Terminal 1)# Flask Configuration
+
+cd backendFLASK_SECRET_KEY=your-super-secret-key-change-in-production
+
+python app.pyFLASK_ENV=development
+
+FLASK_DEBUG=True
+
+# Start frontend development server (Terminal 2)
+
+cd frontend# JWT Configuration
+
+npm startJWT_SECRET_KEY=your-jwt-secret-key-change-in-production
+
+```JWT_ACCESS_TOKEN_EXPIRES=3600
+
+
+
+Access the application:# File Upload Settings
+
+- **Frontend**: http://localhost:3000MAX_UPLOAD_SIZE=10485760
+
+- **Backend API**: http://localhost:5000UPLOAD_FOLDER=../uploads
+
+RESULTS_FOLDER=../results
+
+## 🌐 API Reference
+
+# Model Configuration
+
+### AuthenticationMODEL_PATH=../model/best.pt
+
+- `POST /api/auth/register` - Create new user accountCONFIDENCE_THRESHOLD=0.3
+
+- `POST /api/auth/login` - User authenticationMAX_PREDICTIONS=5
+
+- `GET /api/auth/me` - Get current user profile
+
+- `POST /api/auth/reset-password` - Request password reset# CORS Configuration
+
+- `PUT /api/auth/update-profile` - Update user informationALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+
+````
+
+### Recipe Management
+
+- `GET /api/recipes` - Browse recipes with filtering### Step 3: Run Backend Server
+
+- `GET /api/recipes/{id}` - Get detailed recipe information
+
+- `POST /api/recipes/recommend` - Get AI recommendations```bash
+
+- `GET /api/user/favorites` - Retrieve user favorites# In backend/ directory with venv activated
+
+- `POST /api/user/favorites` - Add recipe to favoritespython app.py
+
+````
+
+### Ingredient Scanning
+
+- `POST /api/scan/upload` - Upload images for ingredient detectionBackend starts on `http://localhost:5000`
+
+- `POST /api/scan/camera` - Real-time camera scanning
+
+- `GET /api/scan/results/{id}` - Retrieve scan results## ⚛️ Frontend Setup
+
+
+
+### User Management### Step 1: Install Dependencies
+
+- `GET /api/user/allergies` - Get user allergy information
+
+- `POST /api/user/allergies` - Add new allergy```bash
+
+- `DELETE /api/user/allergies/{id}` - Remove allergy# Navigate to frontend directory
+
+cd frontend
+
+## 🎯 Usage Examples
+
+# Install npm dependencies
+
+### Basic Workflownpm install
+
+1. **Register/Login**: Create an account or sign in```
+
+2. **Set Preferences**: Configure dietary restrictions and allergies
+
+3. **Scan Ingredients**: Take a photo of available ingredients### Step 2: Environment Configuration
+
+4. **Get Recommendations**: Receive personalized recipe suggestions
+
+5. **Cook & Enjoy**: Follow detailed cooking instructionsCreate `.env` file in `frontend/` directory:
+
+6. **Save Favorites**: Keep track of recipes you love
+
+```env
+
+### Advanced Features# API Configuration
+
+- **Real-time Scanning**: Use camera for live ingredient detectionREACT_APP_API_URL=http://localhost:5000
+
+- **Recipe Filtering**: Search by cuisine, cooking time, or difficulty
+
+- **Nutritional Tracking**: Monitor calories and nutritional content# Feature Flags
+
+- **Profile Management**: Update dietary preferences and allergiesREACT_APP_ENABLE_CAMERA=true
+
+````
 
 ## 🔧 Troubleshooting
 
+### Step 3: Run Frontend Development Server
+
 ### Common Issues
 
-**"Camera Not Available"**
+1. **Port conflicts**: Change ports in configuration files```bash
 
-- ✅ Ensure camera is connected and not in use by other applications
-- ✅ Try different camera indices if multiple cameras are present
-- ✅ Check camera permissions on your operating system
+2. **Database connection**: Verify Supabase credentials# In frontend/ directory
 
-**"Model Not Loaded"**
+3. **Model loading errors**: Ensure `best.pt` file is presentnpm start
 
-- ✅ Verify `model/best.pt` exists in the application folder
-- ✅ Ensure the model file is not corrupted (should be ~6MB)
-- ✅ Check if ultralytics package is properly installed
+4. **CORS issues**: Check API URL configuration in frontend```
 
-**"Poor Detection Accuracy"**
+### Getting HelpFrontend starts on `http://localhost:3000`
 
-- ✅ Improve lighting conditions
-- ✅ Lower confidence threshold in settings
-- ✅ Ensure ingredients are clearly visible and unobstructed
-- ✅ Try different camera angles
+- Check `SETUP_INSTRUCTIONS.md` for detailed setup guidance
 
-**"Web Interface Not Loading"**
+- Review `PROJECT_INFO.md` for technical specifications## 🤖 AI Model Setup
 
-- ✅ Check if Flask is running (look for startup messages)
-- ✅ Try different port if 5000 is occupied
-- ✅ Disable firewall/antivirus temporarily for testing
-- ✅ Access via `127.0.0.1:5000` instead of `localhost:5000`
+- Examine browser developer console for frontend issues
+
+- Check Flask console output for backend errorsPlace your trained YOLO model file at `model/best.pt`
+
+## 📄 Documentation**Note:** The model file is not included due to size. Options:
+
+- `SETUP_INSTRUCTIONS.md` - Complete installation guide
+
+- `PROJECT_INFO.md` - Technical specifications and architecture1. Use your existing trained YOLO model
+
+- `SUPABASE_SCHEMA_COMPLETE.sql` - Database schema2. Train new model with 36 ingredient classes
+
+- `SUPABASE_SAMPLE_DATA.sql` - Sample data for testing3. Download compatible YOLO classification model
+
+## 🚀 Deployment## 🚀 Running Complete Application
+
+For production deployment, see the deployment section in `SETUP_INSTRUCTIONS.md`.
+
+### Development Mode
+
+## 🤝 Contributing
+
+We welcome contributions! Please feel free to submit pull requests or create issues for bugs and feature requests.1. **Terminal 1 - Backend:**
+
+## 📞 Support ```bash
+
+For technical support or questions about Recipe Recommenda, please create an issue in the repository or refer to the documentation files. cd backend
+
+venv\Scripts\activate # Windows
+
+--- python app.py
+
+````
+
+**Recipe Recommenda** - *Discover your next favorite meal with AI* 🍽️✨
+2. **Terminal 2 - Frontend:**
+
+```bash
+cd frontend
+npm start
+````
+
+3. **Access Application:**
+   - Frontend: `http://localhost:3000`
+   - Backend API: `http://localhost:5000`
+   - Health Check: `http://localhost:5000/api/health`
+
+## 📱 Application Features & Usage
+
+### 🔐 User Registration/Login
+
+1. **Create Account**: Register with email and password
+2. **Profile Setup**: Set cooking skill level (Beginner/Intermediate/Advanced)
+3. **Dietary Preferences**: Choose vegetarian, vegan, or gluten-free options
+4. **Secure Login**: JWT-based authentication with session management
+
+### 📸 Ingredient Scanning
+
+1. **Upload Photo**: Take photo of fridge contents or upload existing image
+2. **AI Detection**: YOLO model identifies ingredients with confidence scores
+3. **Review Results**: Confirm or edit detected ingredients
+4. **Save Scan**: Results saved to your scan history
+
+### 🍳 Recipe Recommendations
+
+1. **Smart Suggestions**: Recipes based on your detected ingredients
+2. **Dietary Filtering**: Automatically filtered by your preferences
+3. **Skill Matching**: Recipes matched to your cooking level
+4. **Detailed View**: Full recipes with ingredients, instructions, and nutrition
+5. **Save Favorites**: Bookmark recipes for easy access
+
+### 👤 Profile Management
+
+1. **Update Information**: Change personal details and preferences
+2. **Scan History**: View previous ingredient scans and results
+3. **Favorite Recipes**: Manage saved recipe collection
+4. **Settings**: Adjust app preferences and account settings
+
+## 🛠️ API Endpoints
+
+### Authentication
+
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
+- `POST /api/auth/logout` - User logout
+- `GET /api/auth/profile` - Get user profile
+- `PUT /api/auth/profile` - Update user profile
+
+### Ingredient Scanning
+
+- `POST /api/scan` - Upload and scan ingredient image
+- `GET /api/scan/history` - Get user's scan history
+- `GET /api/scan/{scan_id}` - Get specific scan results
+
+### Recipe Management
+
+- `GET /api/recipes` - Get personalized recipe recommendations
+- `GET /api/recipes/{recipe_id}` - Get specific recipe details
+- `POST /api/recipes/{recipe_id}/favorite` - Add recipe to favorites
+- `DELETE /api/recipes/{recipe_id}/favorite` - Remove from favorites
+- `GET /api/recipes/favorites` - Get user's favorite recipes
+
+### System
+
+- `GET /api/health` - System health check
+- `GET /api/ingredients` - Get supported ingredient classes
+
+## ⚙️ Configuration Options
+
+### Backend Configuration (`.env`)
+
+**AI Model Settings:**
+
+- `CONFIDENCE_THRESHOLD=0.3` - Minimum confidence for detection (0.1-0.9)
+- `MAX_PREDICTIONS=5` - Maximum ingredients to return per scan
+- `MODEL_PATH=../model/best.pt` - Path to YOLO model file
+
+**Database Settings:**
+
+- `SUPABASE_URL` - Your Supabase project URL
+- `SUPABASE_KEY` - Public anon key from Supabase
+- `SUPABASE_SERVICE_KEY` - Service role key (optional)
+
+**Security Settings:**
+
+- `JWT_SECRET_KEY` - Secret for JWT token signing
+- `JWT_ACCESS_TOKEN_EXPIRES=3600` - Token expiry in seconds
+- `FLASK_SECRET_KEY` - Flask session secret
+
+### Frontend Configuration (`.env`)
+
+**API Settings:**
+
+- `REACT_APP_API_URL=http://localhost:5000` - Backend API URL
+- `REACT_APP_ENABLE_CAMERA=true` - Enable camera features
+
+## 🔧 Troubleshooting
+
+### Backend Issues
+
+**Port 5000 already in use:**
+
+```bash
+# Windows - Kill process using port 5000
+netstat -ano | findstr :5000
+taskkill /PID <PID> /F
+
+# macOS/Linux
+sudo lsof -ti:5000 | xargs kill -9
+```
+
+**Module import errors:**
+
+```bash
+# Ensure virtual environment is activated
+cd backend
+venv\Scripts\activate  # Windows
+pip install -r requirements.txt
+```
+
+**Database connection errors:**
+
+- ✅ Check Supabase URL and keys in `.env`
+- ✅ Verify database schema was created successfully
+- ✅ Check Supabase project status in dashboard
+- ✅ Ensure RLS policies are properly configured
+
+**AI Model issues:**
+
+- ✅ Verify `model/best.pt` exists in project root
+- ✅ Check MODEL_PATH in backend `.env` file
+- ✅ Ensure model file is not corrupted (~6MB expected)
+- ✅ Install ultralytics package: `pip install ultralytics`
+
+### Frontend Issues
+
+**npm start fails:**
+
+```bash
+# Clear cache and reinstall
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
+npm start
+```
+
+**CORS errors:**
+
+- ✅ Ensure backend is running on port 5000
+- ✅ Check ALLOWED_ORIGINS in backend `.env`
+- ✅ Verify frontend URL matches backend CORS settings
+
+**Page not loading:**
+
+- ✅ Check React dev server is running on port 3000
+- ✅ Verify REACT_APP_API_URL in frontend `.env`
+- ✅ Check browser console for JavaScript errors
+
+### Database Issues
+
+**Authentication errors:**
+
+- ✅ Verify Supabase keys are correct
+- ✅ Check RLS policies allow proper access
+- ✅ Ensure user registration is working
+
+**Recipe data missing:**
+
+- ✅ Run `database/sample_recipes.sql` in Supabase SQL Editor
+- ✅ Check if tables were created properly
+- ✅ Verify foreign key relationships
 
 ### Performance Issues
 
-**High CPU Usage**
+**Slow AI detection:**
 
-- ✅ Increase scan interval to reduce detection frequency
-- ✅ Lower camera resolution in code settings
-- ✅ Close other unnecessary applications
+- ✅ Ensure adequate RAM (minimum 4GB recommended)
+- ✅ Use smaller images for faster processing
+- ✅ Consider GPU acceleration if available
+- ✅ Adjust CONFIDENCE_THRESHOLD for faster results
 
-**Slow Detection**
+**High memory usage:**
 
-- ✅ Ensure you have adequate RAM (minimum 4GB recommended)
-- ✅ Consider using GPU acceleration if CUDA is available
-- ✅ Upgrade to faster storage (SSD recommended)
-
-### Checking System Status
-
-The application displays system status on startup:
-
-```
-📷 Camera: ✅ Ready / ❌ Not Available
-🤖 Model: ✅ Loaded / ❌ Not Loaded
-🎯 Classes: 36 ingredients supported
-```
+- ✅ Reduce MAX_PREDICTIONS in backend config
+- ✅ Clear browser cache and temporary files
+- ✅ Close unnecessary applications
 
 ## 📁 Project Structure
 
 ```
 ingredient_scanner_app/
+├── backend/                    # Flask API Server
+│   ├── app.py                 # Main application entry point
+│   ├── config.py              # Configuration management
+│   ├── requirements.txt       # Python dependencies
+│   ├── .env                   # Environment variables (create this)
+│   ├── services/              # Business logic layer
+│   │   ├── __init__.py
+│   │   ├── database.py        # Supabase database operations
+│   │   ├── auth.py           # Authentication service
+│   │   ├── scanner.py        # AI model integration
+│   │   └── recipe.py         # Recipe recommendation logic
+│   ├── api/                   # API route handlers
+│   │   ├── __init__.py
+│   │   ├── auth.py           # Authentication routes
+│   │   ├── scan.py           # Scanning endpoints
+│   │   └── recipe.py         # Recipe endpoints
+│   └── utils/                 # Utility functions
+│       ├── __init__.py
+│       ├── validators.py      # Input validation
+│       └── helpers.py         # Helper functions
 │
-├── app.py                 # Main Flask application
-├── requirements.txt       # Python dependencies
-├── README.md             # This documentation
+├── frontend/                   # React Web Application
+│   ├── public/                # Static assets
+│   ├── src/                   # React source code
+│   │   ├── components/        # Reusable UI components
+│   │   │   ├── Auth/         # Authentication components
+│   │   │   ├── Common/       # Shared components
+│   │   │   ├── Recipe/       # Recipe-related components
+│   │   │   └── Scanner/      # Scanning components
+│   │   ├── pages/            # Main page components
+│   │   │   ├── Login.js
+│   │   │   ├── Register.js
+│   │   │   ├── Dashboard.js
+│   │   │   ├── Profile.js
+│   │   │   └── Scanner.js
+│   │   ├── context/          # React context providers
+│   │   │   └── AuthContext.js
+│   │   ├── services/         # API communication
+│   │   │   └── api.js
+│   │   ├── styles/           # Global styles
+│   │   │   └── GlobalStyle.js
+│   │   ├── App.js            # Main App component
+│   │   └── index.js          # React entry point
+│   ├── package.json          # Node.js dependencies
+│   └── .env                  # Environment variables (create this)
 │
-├── model/
-│   └── best.pt           # Trained YOLO classification model
+├── database/                   # Database Schema & Data
+│   ├── supabase_schema.sql    # Complete database schema
+│   └── sample_recipes.sql     # Sample recipe data
 │
-├── uploads/              # Temporary image storage
-└── results/             # Processing results (auto-created)
+├── model/                      # AI Model Files
+│   └── best.pt               # YOLO classification model
+│
+├── uploads/                    # Image uploads (auto-created)
+├── results/                    # Scan results (auto-created)
+└── README.md                  # This documentation
 ```
 
-## 🛠️ Technical Details
+## 🛠️ Technical Architecture
 
-### Architecture
+### Backend Stack
 
-- **Backend**: Flask web framework with YOLO integration
-- **AI Model**: YOLOv8n classification model (94.3% accuracy)
-- **Camera**: OpenCV for camera capture and video streaming
-- **Threading**: Background processing for real-time performance
-- **Frontend**: Modern HTML5/CSS3/JavaScript interface
+- **Framework**: Flask with Blueprint architecture
+- **Database**: Supabase (PostgreSQL) with Row Level Security
+- **AI Integration**: YOLO classification via Ultralytics
+- **Authentication**: JWT tokens with Supabase Auth
+- **File Handling**: Secure image upload and processing
+- **API Design**: RESTful endpoints with proper error handling
 
-### Model Information
+### Frontend Stack
 
-- **Type**: YOLOv8 Classification
+- **Framework**: React 18+ with functional components and hooks
+- **Styling**: Styled-components with responsive design system
+- **Routing**: React Router with protected route guards
+- **State Management**: Context API for authentication state
+- **HTTP Client**: Axios with interceptors for API communication
+- **UI/UX**: Mobile-first responsive design with professional styling
+
+### Database Schema
+
+- **Users**: Profile, preferences, authentication data
+- **Ingredients**: Comprehensive ingredient catalog
+- **Recipes**: Recipe details with nutrition and instructions
+- **Recipe_Ingredients**: Many-to-many relationship mapping
+- **Scans**: User scan history and results
+- **User_Recipes**: Favorite recipe tracking
+- **Dietary_Restrictions**: User dietary preferences
+- **Cooking_Skills**: User skill level management
+
+### AI Model Details
+
+- **Type**: YOLOv8 Classification Model
 - **Classes**: 36 ingredient categories
-- **Accuracy**: 94.3% on validation set
-- **Input Size**: 224x224 pixels
-- **Format**: PyTorch (.pt file)
+- **Input**: 224x224 RGB images
+- **Output**: Ingredient predictions with confidence scores
+- **Performance**: ~0.5-1.0 seconds per detection
 
-### Performance
+## 🚢 Production Deployment
 
-- **Detection Speed**: ~0.5-1.0 seconds per image
-- **Memory Usage**: ~500MB-1GB RAM
-- **CPU Usage**: Moderate (depends on scan frequency)
-- **Supported Cameras**: USB webcams, built-in laptop cameras
+### Backend Deployment
 
-## 🤝 Support
+1. **Environment Configuration:**
 
-### Getting Help
+```bash
+# Set production environment variables
+FLASK_ENV=production
+FLASK_DEBUG=False
+SUPABASE_URL=https://your-prod-project.supabase.co
+```
 
-1. **Check this README** for common solutions
-2. **Review console output** for error messages
-3. **Verify system requirements** and dependencies
-4. **Test with different camera angles/lighting**
+2. **Production WSGI Server:**
 
-### System Requirements
+```bash
+pip install gunicorn
+gunicorn -w 4 -b 0.0.0.0:5000 app:app
+```
 
-- **Minimum**: Python 3.8, 4GB RAM, USB camera
-- **Recommended**: Python 3.9+, 8GB RAM, good lighting
-- **Operating System**: Windows 10+, macOS 10.15+, Ubuntu 18.04+
+### Frontend Deployment
+
+```bash
+# Build production bundle
+cd frontend
+npm run build
+
+# Deploy to static hosting (Netlify, Vercel, etc.)
+# or serve locally:
+npm install -g serve
+serve -s build -l 3000
+```
+
+### Database Production Setup
+
+- Use Supabase production instance
+- Enable proper RLS policies for security
+- Set up automated backups
+- Configure connection pooling for scale
+
+## 🧪 Testing
+
+### Running Tests
+
+```bash
+# Backend tests
+cd backend
+python -m pytest tests/ -v
+
+# Frontend tests
+cd frontend
+npm test
+
+# Integration tests
+python test_system.py
+```
+
+### Manual Testing Checklist
+
+- [ ] User registration and login
+- [ ] Image upload and ingredient detection
+- [ ] Recipe recommendations based on ingredients
+- [ ] Favorite recipe management
+- [ ] Profile updates and dietary preferences
+- [ ] Mobile responsiveness across devices
+
+## 🔮 Future Enhancements
+
+- [ ] **Real-time Camera Scanning**: Live video feed integration
+- [ ] **Nutrition Analysis**: Detailed nutritional information for recipes
+- [ ] **Meal Planning**: Weekly meal planning based on available ingredients
+- [ ] **Shopping Lists**: Generate shopping lists from recipe requirements
+- [ ] **Social Features**: Share recipes and cooking tips with friends
+- [ ] **Mobile App**: React Native app for iOS and Android
+- [ ] **Advanced AI**: Freshness detection, quantity estimation
+- [ ] **Voice Integration**: Voice commands for hands-free operation
+- [ ] **Recipe Creation**: AI-powered recipe generation
+- [ ] **Inventory Tracking**: Smart pantry management system
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these guidelines:
+
+1. **Fork Repository**: Create your own fork of the project
+2. **Create Branch**: `git checkout -b feature/amazing-feature`
+3. **Make Changes**: Implement your feature or bug fix
+4. **Run Tests**: Ensure all tests pass
+5. **Commit Changes**: `git commit -m 'Add amazing feature'`
+6. **Push Branch**: `git push origin feature/amazing-feature`
+7. **Create PR**: Open a Pull Request with description
+
+### Development Guidelines
+
+- Follow existing code style and conventions
+- Add tests for new functionality
+- Update documentation as needed
+- Use semantic commit messages
+- Ensure mobile responsiveness for frontend changes
+
+## 📊 System Requirements
+
+### Minimum Requirements
+
+- **Python**: 3.8+ with pip
+- **Node.js**: 16+ with npm
+- **RAM**: 4GB minimum, 8GB recommended
+- **Storage**: 2GB free space
+- **Internet**: Stable connection for API calls
+
+### Recommended Setup
+
+- **OS**: Windows 10+, macOS 10.15+, Ubuntu 18.04+
+- **RAM**: 8GB+ for optimal performance
+- **CPU**: Multi-core processor recommended
+- **Camera**: HD webcam or smartphone camera for best results
 
 ## 📄 License
 
-This project is for educational and demonstration purposes. The YOLO model is based on Ultralytics' YOLOv8 framework.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🆘 Support & Contact
+
+For support and questions:
+
+1. **Documentation**: Check this comprehensive README
+2. **Issues**: Use GitHub Issues for bug reports
+3. **Discussions**: Join GitHub Discussions for general questions
+4. **Console Logs**: Check browser and terminal output for errors
+
+### Quick Debugging Steps
+
+1. Check all environment variables are set correctly
+2. Verify Supabase database connection and schema
+3. Ensure AI model file exists and is accessible
+4. Test API endpoints individually using tools like Postman
+5. Check browser console for frontend JavaScript errors
+
+## 🎯 Key Success Metrics
+
+The application successfully demonstrates:
+
+- ✅ **Full-Stack Architecture**: Complete separation between frontend/backend
+- ✅ **AI Integration**: Working YOLO model with ingredient detection
+- ✅ **Database Design**: Comprehensive schema with proper relationships
+- ✅ **Authentication**: Secure JWT-based user management
+- ✅ **Mobile Responsiveness**: Works seamlessly on all device sizes
+- ✅ **Recipe Matching**: Intelligent recipe suggestions based on ingredients
+- ✅ **Production Ready**: Proper error handling, validation, and security
 
 ---
 
-**Happy Ingredient Scanning! 🥗🔍**
+**🍽️ Happy Cooking with Smart Ingredient Detection! 🤖👨‍🍳👩‍🍳**
 
-For best results, ensure good lighting and clear ingredient positioning. The AI works best with individual ingredients rather than complex dishes or mixed items.
+_Transform your cooking experience with AI-powered ingredient recognition and personalized recipe recommendations!_
